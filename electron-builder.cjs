@@ -17,6 +17,13 @@ module.exports = {
   directories: {
     output: 'release',
   },
+  // Only package what the app needs at runtime. Vite already bundles every
+  // npm dependency (React, KaTeX, nerdamer) into dist/, so node_modules,
+  // src/ and config files would just be duplicate weight.
+  files: ['dist/**/*', 'electron/**/*', '!node_modules/**/*'],
+  // Ship only English Chromium locale files (UI strings for built-in
+  // dialogs/menus); the other ~55 languages add ~50 MB unpacked.
+  electronLanguages: ['en-US'],
   win: {
     target: ['nsis'],
   },
