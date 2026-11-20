@@ -2,6 +2,7 @@ name: Build Windows EXE
 
 on:
   push:
+    branches: ['**']
   workflow_dispatch:
 
 jobs:
@@ -27,10 +28,15 @@ jobs:
       - name: Package Windows installer
         run: npx electron-builder --win --publish never
 
+      - name: Determine version name
+        id: version
+        shell: bash
+        run: echo "name=v$(node -p "require('./package.json').version.replace(/\.0$/, '')")" >> "$GITHUB_OUTPUT"
+
       - name: Upload installer
         uses: actions/upload-artifact@v4
         with:
-          name: Circuit-Calculator-Windows-${{ github.sha }}
+          name: Circuit-Calculator-${{ steps.version.outputs.name }}
           path: |
             release/*.exe
             release/*.exe.blockmap
