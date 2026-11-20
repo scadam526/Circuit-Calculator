@@ -26,8 +26,8 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.1",
     "concurrently": "^10.0.3",
-    "electron": "^34.3.0",
-    "electron-builder": "^25.1.8",
+    "electron": "^45.4.1",
+    "electron-builder": "^26.18.0",
     "eslint": "^10.3.0",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.2",
@@ -36,5 +36,16 @@
     "typescript-eslint": "^8.59.2",
     "vite": "^8.0.12",
     "wait-on": "^9.0.10"
+  },
+  "overrides": {
+    "app-builder-lib": {
+      "minimatch": "^11.0.9"
+    },
+    "@electron/universal": {
+      "minimatch": "^11.0.9"
+    }
+  },
+  "allowScripts": {
+    "electron-winstaller": false
   }
 }
